@@ -32,6 +32,7 @@ public class Employee {
         while (daysworked < this.totalWorkingDays && empHrs < this.maxWorkHours) {
             String empCheck = this.checkDailyHours();
 
+            
             switch (empCheck) {
                 case "FULL_TIME":
                     dailyWage = this.fullTimeWage();
