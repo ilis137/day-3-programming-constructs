@@ -2,17 +2,20 @@ package com.javapractice;
 
 import java.util.Random;
 
-/**
- * Hello world!
- *
- */
+/*Calculate Daily Employee Wage*/
+
 public class Employee 
 {
     int present;
-
+    int wagePerHour=20;
     public int isPresent(){
         Random rand = new Random();
         return rand.nextInt(2);    
+    }
+
+    public int dailyWage(){
+       int dailyHrs=8;
+       return dailyHrs*this.wagePerHour;
     }
  
     public static void main( String[] args )
@@ -25,6 +28,9 @@ public class Employee
         }else{
             System.out.println("Employee is not present");
         }
+        
+        int dailyWage=emp.dailyWage();
+        System.out.println("daily wage of employee is: "+dailyWage +"Rs.");
         
     }
 }
