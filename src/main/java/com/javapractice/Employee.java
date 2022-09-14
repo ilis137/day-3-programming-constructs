@@ -2,7 +2,6 @@ package com.javapractice;
 
 import java.util.Random;
 
-import javax.lang.model.util.ElementScanner6;
 
 /*Calculate Daily Employee Wage*/
 
@@ -10,7 +9,9 @@ public class Employee {
     int wagePerHour = 20;
     String[] dailyStatus = { "FULL_TIME", "PART_TIME", "NOT_PRESENT" };
 
-    public int dailyWage() {
+    int totalWorkingDays = 20;
+
+    public int fullTimeWage() {
         int dailyHrs = 8;
         return dailyHrs * this.wagePerHour;
     }
@@ -26,26 +27,38 @@ public class Employee {
         return dailyStatus[rand.nextInt(3)];
     }
 
+    int getMonthlyWage() {
+        int totalWage = 0;
+        int daysworked = 0;
+        int dailyWage = 0;
+        while (daysworked < this.totalWorkingDays) {
+            String empCheck = this.checkDailyHours();
+
+            switch (empCheck) {
+                case "FULL_TIME":
+                    dailyWage = this.fullTimeWage();
+                    System.out.println("full time wage of employee is: " + dailyWage + " Rs.");
+                    break;
+                case "PART_TIME":
+                    dailyWage = this.partTimeWage();
+                    System.out.println("part time wage of employee is: " + dailyWage + " Rs.");
+                    break;
+                case "NOT_PRESENT":
+                    dailyWage = 0;
+                    System.out.println(" wage of absent employee is: 0 Rs.");
+                    break;
+                default:
+                    break;
+            }
+            totalWage+=dailyWage;
+            daysworked++;
+        }
+       return totalWage;
+    }
+
     public static void main(String[] args) {
         Employee emp = new Employee();
-
-        String empCheck = emp.checkDailyHours();
-
-        switch (empCheck) {
-            case "FULL_TIME":
-                int dailyWage = emp.dailyWage();
-                System.out.println("daily wage of employee is: " + dailyWage + " Rs.");
-                break;
-            case "PART_TIME":
-                int partTimeWage = emp.partTimeWage();
-                System.out.println("part time wage of employee is: " + partTimeWage + " Rs.");
-                break;
-            case "NOT_PRESENT":
-                System.out.println(" wage of absent employee is: 0 Rs.");
-                break;
-            default:
-                break;
-        }
-
+        int monthlyWage=emp.getMonthlyWage();
+        System.out.println("total wage of employee for the month is: "+ monthlyWage);
     }
 }
