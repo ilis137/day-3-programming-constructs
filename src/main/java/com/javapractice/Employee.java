@@ -18,6 +18,11 @@ public class Employee
        return dailyHrs*this.wagePerHour;
     }
  
+    public int partTimeWage(){
+        int dailyHrs=4;
+        return dailyHrs*this.wagePerHour;
+     }
+  
     public static void main( String[] args )
     {
         Employee emp=new Employee();
@@ -28,9 +33,15 @@ public class Employee
         }else{
             System.out.println("Employee is not present");
         }
+
+        
         
         int dailyWage=emp.dailyWage();
-        System.out.println("daily wage of employee is: "+dailyWage +"Rs.");
+        System.out.println("daily wage of employee is: "+dailyWage +" Rs.");
+        
+        
+        int partTimeWage=emp.partTimeWage();
+        System.out.println("part time wage of employee is: "+partTimeWage +" Rs.");
         
     }
 }
