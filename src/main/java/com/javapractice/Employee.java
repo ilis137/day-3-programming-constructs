@@ -2,21 +2,20 @@ package com.javapractice;
 
 import java.util.Random;
 
-
-
 public class Employee {
     int wagePerHour = 20;
     String[] dailyStatus = { "FULL_TIME", "PART_TIME", "NOT_PRESENT" };
     int totalWorkingDays = 20;
-    int maxWorkHours=100;
-    final int PART_TIME=4;
-    final int FULL_TIME=8;
-    final int NOT_PRESENT=0;
-    public int fullTimeWage() {            
+    int maxWorkHours = 100;
+    final int PART_TIME = 4;
+    final int FULL_TIME = 8;
+    final int NOT_PRESENT = 0;
+
+    public int fullTimeWage() {
         return FULL_TIME * this.wagePerHour;
     }
 
-    public int partTimeWage() {      
+    public int partTimeWage() {
         return PART_TIME * this.wagePerHour;
     }
 
@@ -29,39 +28,40 @@ public class Employee {
         int totalWage = 0;
         int daysworked = 0;
         int dailyWage = 0;
-        int empHrs=0;
+        int empHrs = 0;
         while (daysworked < this.totalWorkingDays && empHrs < this.maxWorkHours) {
             String empCheck = this.checkDailyHours();
 
             switch (empCheck) {
                 case "FULL_TIME":
                     dailyWage = this.fullTimeWage();
-                    empHrs+=this.FULL_TIME;
+                    empHrs += this.FULL_TIME;
                     System.out.println("full time wage of employee is: " + dailyWage + " Rs.");
                     break;
                 case "PART_TIME":
                     dailyWage = this.partTimeWage();
                     System.out.println("part time wage of employee is: " + dailyWage + " Rs.");
-                    empHrs+=this.PART_TIME;
+                    empHrs += this.PART_TIME;
                     break;
                 case "NOT_PRESENT":
                     dailyWage = 0;
                     System.out.println(" wage of absent employee is: 0 Rs.");
-                    empHrs+=this.NOT_PRESENT;
+                    empHrs += this.NOT_PRESENT;
                     break;
                 default:
                     break;
             }
-            totalWage+=dailyWage;
-            
+            totalWage += dailyWage;
+
             daysworked++;
+
         }
-       return totalWage;
+        return totalWage;
     }
 
     public static void main(String[] args) {
         Employee emp = new Employee();
-        int monthlyWage=emp.getMonthlyWage();
-        System.out.println("total wage of employee for the month is: "+ monthlyWage);
+        int monthlyWage = emp.getMonthlyWage();
+        System.out.println("total wage of employee for the month is: " + monthlyWage);
     }
 }
